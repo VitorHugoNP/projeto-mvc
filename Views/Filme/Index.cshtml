@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProjetoMVC.Models.Filme>
+
+@{
+    ViewData["Title"] = "Lista de Filmes";
+}
+
+<h1>Lista de Filmes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Sinopse</th>
+            <th>Data de Lançamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var filme in Model)
+        {
+            <tr>
+                <td>@filme.Titulo</td>
+                <td>@filme.Sinopse</td>
+                <td>@filme.Data_lancamento.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
