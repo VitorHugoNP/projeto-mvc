@@ -5,16 +5,16 @@ namespace ProjetoMVC.Controllers
 {
     public class FilmeController : Controller
     {
-        private readonly FilmeRepository repository;
+        private readonly IFilmeRepository _repository;
 
-        public FilmeController(FilmeRepository repository)
+        public FilmeController(IFilmeRepository repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            var filmes = repository.GetAll();
+            var filmes = _repository.GetAll();
             return View(filmes);
         }
 
@@ -25,25 +25,25 @@ namespace ProjetoMVC.Controllers
 
         public IActionResult AddFilme(Filme filme)
         {
-            repository.Add(filme);
+            _repository.AddFilme(filme);
             return RedirectToAction("Index");
         }
 
         public IActionResult Detalhes(int id)
         {
-            var filme = repository.GetById(id);
+            var filme = _repository.GetById(id);
             return View(filme);
         }
         
         public IActionResult UpdateFilme(Filme filme)
         {
-            repository.Update(filme);
+            _repository.UpdateFilme(filme);
             return RedirectToAction("Index");
         }
 
         public IActionResult DeleteFilme(int id)
         {
-            repository.Delete(id);
+            _repository.DeleteFilme(id);
             return RedirectToAction("Index");
         }
     }
